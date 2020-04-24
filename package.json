@@ -29,7 +29,7 @@
     "react-native-screens": "^2.4.0",
     "react-native-simple-toast": "^1.1.0",
     "react-native-splash-screen": "^3.2.0",
-    "react-native-ssl-pinning": "^1.4.1",
+    "react-native-ssl-pinning": "https://github.com/MaxToyberman/react-native-ssl-pinning.git",
     "react-native-ui-lib": "^5.5.4",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.3.7",

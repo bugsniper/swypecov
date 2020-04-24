@@ -2,13 +2,14 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 
 import { colors } from '../../styles';
-import {Body, Container, Content, Header, Right, Title} from "native-base";
+import {Body, Container, Content, Header, Right, Title, Left} from "native-base";
 
 export default function PagesScreen(props) {
   return (
     <Container>
       <Header style={{backgroundColor: colors.white}}>
-        <Body>
+      <Left></Left>
+        <Body style={{flex: 1, alignItems: 'center'}}>
           <Title style={{color: colors.primary, fontWeight: 'bold'}}>Contacts</Title>
         </Body>
         <Right />

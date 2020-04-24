@@ -5917,10 +5917,9 @@ react-native-splash-screen@^3.2.0:
   resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.2.0.tgz#d47ec8557b1ba988ee3ea98d01463081b60fff45"
   integrity sha512-Ls9qiNZzW/OLFoI25wfjjAcrf2DZ975hn2vr6U9gyuxi2nooVbzQeFoQS5vQcbCt9QX5NY8ASEEAtlLdIa6KVg==
 
-react-native-ssl-pinning@^1.4.1:
+"react-native-ssl-pinning@https://github.com/MaxToyberman/react-native-ssl-pinning.git":
   version "1.4.1"
-  resolved "https://registry.yarnpkg.com/react-native-ssl-pinning/-/react-native-ssl-pinning-1.4.1.tgz#a862c276784c511866ad4326b5ba684868f6e8d7"
-  integrity sha512-sJWFe/hQqtVR7kO5VbjznX5bYAEDyn3EinA62wAP/mrIIWYAH7845q4/vMuReqJF//Wi/jHULStdjH3dhLXuDA==
+  resolved "https://github.com/MaxToyberman/react-native-ssl-pinning.git#408b6142574f35b9136ec7c288560058f2903998"
   dependencies:
     q "^1.4.1"
 

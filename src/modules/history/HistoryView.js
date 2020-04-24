@@ -4,7 +4,7 @@ import {
   View,
   FlatList
 } from 'react-native';
-import {Container, Header, Title, Content, ListItem, Text, Icon, Body, Right} from 'native-base';
+import {Container, Header, Title, Content, ListItem, Text, Icon, Body, Right, Left} from 'native-base';
 import AntDesignIcon from "react-native-vector-icons/AntDesign";
 import MarqueeText from 'react-native-marquee';
 import {colors} from '../../styles'
@@ -28,6 +28,7 @@ export default function HistoryView(props) {
   return (
     <Container>
       <Header style={{backgroundColor: colors.white}}>
+      <Left></Left>
         <Body>
           <Title style={{color: colors.primary, fontWeight: 'bold'}}>Previous Swypes</Title>
         </Body>

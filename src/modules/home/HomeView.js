@@ -3,7 +3,7 @@ import {
   StyleSheet, View, TouchableOpacity, Alert, Animated, Easing
 } from 'react-native';
 import {colors} from '../../styles'
-import {Body, Container, Content, Header, Right, Text, Title} from 'native-base';
+import {Body, Container, Content, Header, Right, Text, Title, Left} from 'native-base';
 import SwipeButton from 'rn-swipe-button';
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import {Misc} from '../../utils/misc'
@@ -178,6 +178,7 @@ export default function HomeScreen(props) {
   return (
     <Container>
       <Header style={{backgroundColor: colors.white}}>
+      <Left></Left>
         <Body>
           <Title style={{color: colors.primary, fontWeight: 'bold'}}>SwypeCov</Title>
         </Body>

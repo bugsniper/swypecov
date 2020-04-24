@@ -82,7 +82,7 @@ export function get(url, data) {
     method: 'GET',
     timeoutInterval: 10000,
     sslPinning: {
-      certs: ["boominsure"]
+      certs: ["boom.insure"]
     },
     headers: {
       'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export function post(url, postData) {
     timeoutInterval: 10000,
     body: JSON.stringify(postData),
     sslPinning: {
-      certs: ["boominsure"]
+      certs: ["boom.insure"]
     },
     headers: {
       'Content-Type': 'application/json',
