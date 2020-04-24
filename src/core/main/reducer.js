@@ -11,6 +11,7 @@ import {
   STILLWATER_CONDO
 } from './actions';
 import {notEmpty} from "../../utils/helper";
+import Base64 from "../../utils/base64";
 
 const InitialState = {
   isLoading: false,
@@ -38,7 +39,8 @@ const InitialState = {
 };
 const historyTempData = {
   zillowData: null,
-  total_data: null
+  total_data: null,
+  address: null
 };
 const totalTempData = {
   flood: null,
@@ -56,6 +58,7 @@ const totalTempData = {
 export default (state = InitialState, action) => {
   let total_data = state.total_data || {};
   let histories = state.histories || {};
+  const addressBtoa = action.address ? Base64.btoa(action.address): undefined;
   let newState = state;
   switch (action.type) {
     case ZILLOW.DO:
@@ -67,8 +70,9 @@ export default (state = InitialState, action) => {
 
     case ZILLOW.SUCCESS:
       newState = Object.assign({}, newState, {status: ZILLOW.SUCCESS});
-      if (!notEmpty(histories[action.address])) histories[action.address] = historyTempData;
-      histories[action.address]['zillowData'] = action.data;
+      if (!notEmpty(histories[addressBtoa])) histories[addressBtoa] = historyTempData;
+      histories[addressBtoa]['address'] = action.address;
+      histories[addressBtoa]['zillowData'] = action.data;
       newState = Object.assign({}, newState, {
         zillowData: action.data,
         histories,
@@ -81,9 +85,10 @@ export default (state = InitialState, action) => {
       break;
 
     case NEMPTUNE.DO:
+      total_data = totalTempData;
       newState = Object.assign({}, newState, {
         status: NEMPTUNE.DO,
-        total_data: totalTempData
+        total_data
       });
       break;
 
@@ -91,8 +96,9 @@ export default (state = InitialState, action) => {
       total_data['flood'] = action.data;
       newState = Object.assign({}, newState, {status: NEMPTUNE.SUCCESS});
       newState = Object.assign({}, newState, {total_data});
-      if (!notEmpty(histories[action.address])) histories[action.address] = historyTempData;
-      histories[action.address]['total_data'] = total_data;
+      if (!notEmpty(histories[addressBtoa])) histories[addressBtoa] = historyTempData;
+      histories[addressBtoa]['address'] = action.address;
+      histories[addressBtoa]['total_data'] = total_data;
       newState = Object.assign({}, newState, {total_data, histories, historyStatus: NEMPTUNE.SUCCESS});
       break;
 
@@ -107,8 +113,9 @@ export default (state = InitialState, action) => {
     case PLYMOUTH_HOME.SUCCESS:
       total_data['demo_homeowner_data']['plymouth'] = action.data;
       newState = Object.assign({}, newState, {status: PLYMOUTH_HOME.SUCCESS});
-      if (!notEmpty(histories[action.address])) histories[action.address] = historyTempData;
-      histories[action.address]['total_data'] = total_data;
+      if (!notEmpty(histories[addressBtoa])) histories[addressBtoa] = historyTempData;
+      histories[addressBtoa]['address'] = action.address;
+      histories[addressBtoa]['total_data'] = total_data;
       newState = Object.assign({}, newState, {total_data, histories, historyStatus: PLYMOUTH_HOME.SUCCESS});
       break;
 
@@ -123,8 +130,9 @@ export default (state = InitialState, action) => {
     case PLYMOUTH_CONDO.SUCCESS:
       total_data['demo_condo_data']['plymouth'] = action.data;
       newState = Object.assign({}, newState, {status: PLYMOUTH_CONDO.SUCCESS});
-      if (!notEmpty(histories[action.address])) histories[action.address] = historyTempData;
-      histories[action.address]['total_data'] = total_data;
+      if (!notEmpty(histories[addressBtoa])) histories[addressBtoa] = historyTempData;
+      histories[addressBtoa]['address'] = action.address;
+      histories[addressBtoa]['total_data'] = total_data;
       newState = Object.assign({}, newState, {total_data, histories, historyStatus: PLYMOUTH_CONDO.SUCCESS});
       break;
 
@@ -139,8 +147,9 @@ export default (state = InitialState, action) => {
     case UNIVERSAL_HOME.SUCCESS:
       total_data['demo_homeowner_data']['universal'] = action.data;
       newState = Object.assign({}, newState, {status: UNIVERSAL_HOME.SUCCESS});
-      if (!notEmpty(histories[action.address])) histories[action.address] = historyTempData;
-      histories[action.address]['total_data'] = total_data;
+      if (!notEmpty(histories[addressBtoa])) histories[addressBtoa] = historyTempData;
+      histories[addressBtoa]['address'] = action.address;
+      histories[addressBtoa]['total_data'] = total_data;
       newState = Object.assign({}, newState, {total_data, histories, historyStatus: UNIVERSAL_HOME.SUCCESS});
       break;
 
@@ -155,8 +164,9 @@ export default (state = InitialState, action) => {
     case UNIVERSAL_CONDO.SUCCESS:
       total_data['demo_condo_data']['universal'] = action.data;
       newState = Object.assign({}, newState, {status: UNIVERSAL_CONDO.SUCCESS});
-      if (!notEmpty(histories[action.address])) histories[action.address] = historyTempData;
-      histories[action.address]['total_data'] = total_data;
+      if (!notEmpty(histories[addressBtoa])) histories[addressBtoa] = historyTempData;
+      histories[addressBtoa]['address'] = action.address;
+      histories[addressBtoa]['total_data'] = total_data;
       newState = Object.assign({}, newState, {total_data, histories, historyStatus: UNIVERSAL_CONDO.SUCCESS});
       break;
 
@@ -171,8 +181,9 @@ export default (state = InitialState, action) => {
     case STILLWATER_HOME.SUCCESS:
       total_data['demo_homeowner_data']['stillwater'] = action.data;
       newState = Object.assign({}, newState, {status: UNIVERSAL_HOME.SUCCESS});
-      if (!notEmpty(histories[action.address])) histories[action.address] = historyTempData;
-      histories[action.address]['total_data'] = total_data;
+      if (!notEmpty(histories[addressBtoa])) histories[addressBtoa] = historyTempData;
+      histories[addressBtoa]['address'] = action.address;
+      histories[addressBtoa]['total_data'] = total_data;
       newState = Object.assign({}, newState, {total_data, histories, historyStatus: STILLWATER_HOME.SUCCESS});
       break;
 
@@ -187,8 +198,9 @@ export default (state = InitialState, action) => {
     case STILLWATER_CONDO.SUCCESS:
       total_data['demo_condo_data']['stillwater'] = action.data;
       newState = Object.assign({}, newState, {status: UNIVERSAL_CONDO.SUCCESS});
-      if (!notEmpty(histories[action.address])) histories[action.address] = historyTempData;
-      histories[action.address]['total_data'] = total_data;
+      if (!notEmpty(histories[addressBtoa])) histories[addressBtoa] = historyTempData;
+      histories[addressBtoa]['address'] = action.address;
+      histories[addressBtoa]['total_data'] = total_data;
       newState = Object.assign({}, newState, {total_data, histories, historyStatus: STILLWATER_CONDO.SUCCESS});
       break;
 
@@ -201,8 +213,9 @@ export default (state = InitialState, action) => {
       break;
 
     case ZILLOW_MANUAL.SET:
-      if (!notEmpty(histories[action.address])) histories[action.address] = historyTempData;
-      histories[action.address]['zillowData'] = action.data;
+      if (!notEmpty(histories[addressBtoa])) histories[addressBtoa] = historyTempData;
+      histories[addressBtoa]['address'] = action.address;
+      histories[addressBtoa]['zillowData'] = action.data;
       newState = Object.assign({}, newState, {zillowData: action.data, histories, historyStatus: ZILLOW_MANUAL.SUCCESS});
       break;
 

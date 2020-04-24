@@ -80,6 +80,7 @@ export function get(url, data) {
   if (data) url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(data);
   return request(`${apiRoot}${url}`, {
     method: 'GET',
+    timeoutInterval: 10000,
     sslPinning: {
       certs: ["boominsure"]
     },
@@ -93,6 +94,7 @@ export function get(url, data) {
 export function post(url, postData) {
   return request(`${apiRoot}${url}`, {
     method: 'POST',
+    timeoutInterval: 10000,
     body: JSON.stringify(postData),
     sslPinning: {
       certs: ["boominsure"]

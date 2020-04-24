@@ -18,10 +18,10 @@ export default function HistoryView(props) {
   useEffect(() => {
   }, [historyStatus]);
 
-  const historyItemPressHandler = (item, address) => {
-    Misc.setAddressData(address);
-    props.setTotalDate(item['total_data'], address);
-    props.setZillowManual(item['zillowData'], address);
+  const historyItemPressHandler = (item) => {
+    Misc.setAddressData(item.address);
+    props.setTotalDate(item['total_data'], item.address);
+    props.setZillowManual(item['zillowData'], item.address);
     props.navigation.push('FinalScreen')
   };
 
@@ -37,7 +37,7 @@ export default function HistoryView(props) {
         <FlatList
           data={Object.keys(historyData)}
           renderItem={({item}) => (
-            <ListItem icon onPress={()=> historyItemPressHandler(historyData[item], item)}>
+            <ListItem icon onPress={()=> historyItemPressHandler(historyData[item])}>
               <Body>
               <MarqueeText
                 style={{ fontSize: 17 }}
@@ -47,7 +47,7 @@ export default function HistoryView(props) {
                 marqueeDelay={1000}
                 marqueeResetDelay={1000}
               >
-                {item}
+                {historyData[item]['address']}
               </MarqueeText>
               </Body>
               <Right>
