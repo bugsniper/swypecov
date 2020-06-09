@@ -4,8 +4,6 @@ import {
 } from 'react-native';
 import {colors} from '../../styles'
 import {Body, Container, Content, Header, Right, Text, Title, Left} from 'native-base';
-import SwipeButton from 'rn-swipe-button';
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import {Misc} from '../../utils/misc'
 import HomeSelectButton from "../../components/HomeSelectButton";
 import AddressAutoComplete from "../../components/AddressAutoComplete";
@@ -14,12 +12,39 @@ import TransparentModal from "../../components/TransparentModal";
 import HomeItemsList from "../../components/HomeItemsList";
 import AddressAutoCompleteModal from "../../components/AddressAutoCompleteModal";
 import {notEmpty} from "../../utils/helper";
+import SwipePulseButton from "../../components/SwipeButton";
 
-const SwipeIcon = () => (
-  <FontAwesomeIcon style={{fontWeight: 'bold'}} name="angle-double-right" color={colors.textInputColor} size={30} />
-);
+
+
+const fadeIn = {
+  from: {
+    opacity: 0,
+  },
+  to: {
+    opacity: 1,
+  },
+};
+
+const zoomOut = {
+  0: {
+    opacity: 1,
+    scale: 1,
+  },
+  0.5: {
+    opacity: 1,
+    scale: 0.3,
+  },
+  1: {
+    opacity: 0,
+    scale: 0,
+  },
+};
 
 export default function HomeScreen(props) {
+  let navigationOptions = {
+    // headerTitle instead of title
+    headerTitle: 'Home',
+  };
   const [isManual, setIsManual] = useState(false);
   const [isHomeModal, setIsHomeModal] = useState(false);
   const [isAutoModalVisible, setIsAutoModalVisible] = useState(false);
@@ -177,13 +202,6 @@ export default function HomeScreen(props) {
 
   return (
     <Container>
-      <Header style={{backgroundColor: colors.white}}>
-      <Left></Left>
-        <Body>
-          <Title style={{color: colors.primary, fontWeight: 'bold'}}>SwypeCov</Title>
-        </Body>
-        <Right />
-      </Header>
       <Content style={styles.container}>
         <View style={{marginVertical: 50}}>
           <Text style={{textAlign: 'center', fontSize: 57, fontWeight: 'bold', color: colors.darkerGray}}>Just Swype</Text>
@@ -212,22 +230,7 @@ export default function HomeScreen(props) {
           <TouchableOpacity style={{marginBottom: 20}} onPress={() => setIsManual(!isManual)}>
             <Text style={{textDecorationLine: 'underline'}}>{isManual ? 'Enter Automatically' : 'Enter Manually'}</Text>
           </TouchableOpacity>
-          {addressTxt !== '' && <SwipeButton
-            containerStyles={{borderWidth: 2, padding: 0, height: 60}}
-            titleStyles={{fontSize: 20, color: colors.black}}
-            iconSize={60}
-            height={60}
-            thumbIconBackgroundColor={colors.primary}
-            thumbIconBorderColor={colors.primary}
-            railBackgroundColor={colors.white}
-            railFillBackgroundColor={colors.primary}
-            railBorderColor={colors.primary}
-            railFillBorderColor={colors.primary}
-            shouldResetAfterSuccess
-            title="Swipe to Quote"
-            thumbIconComponent={() => (<Animated.View><SwipeIcon/></Animated.View>)}
-            onSwipeSuccess={() => swipeNext()}
-          />}
+          {addressTxt !== '' && <SwipePulseButton title={"Swipe to Quote"} swipeNext={() => swipeNext()}/>}
         </View>
       </Content>
       <TransparentModal modalVisible={isHomeModal} onCloseModal={() => setIsHomeModal(false)}>

@@ -7,13 +7,6 @@ import {Body, Container, Content, Header, Right, Title, Left} from "native-base"
 export default function PagesScreen(props) {
   return (
     <Container>
-      <Header style={{backgroundColor: colors.white}}>
-      <Left></Left>
-        <Body style={{flex: 1, alignItems: 'center'}}>
-          <Title style={{color: colors.primary, fontWeight: 'bold'}}>Contacts</Title>
-        </Body>
-        <Right />
-      </Header>
       <Content>
       </Content>
     </Container>

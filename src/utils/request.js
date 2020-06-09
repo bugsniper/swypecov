@@ -97,7 +97,7 @@ export function post(url, postData) {
     timeoutInterval: 10000,
     body: JSON.stringify(postData),
     sslPinning: {
-      certs: ["boom.insure"]
+      certs: ["boominsure"]
     },
     headers: {
       'Content-Type': 'application/json',

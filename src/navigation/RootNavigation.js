@@ -14,7 +14,7 @@ const stackNavigator = createStackNavigator(
     Main: {
       screen: MainTabNavigator,
       navigationOptions: {
-        header: null,
+        header: null
       },
     },
     ProgressScreen: {
@@ -27,7 +27,8 @@ const stackNavigator = createStackNavigator(
     FinalScreen: {
       screen: FinalScreen,
       navigationOptions: {
-        header: null,
+        title: 'SwypeCov',
+        headerLeft: () => null,
       },
     },
   },

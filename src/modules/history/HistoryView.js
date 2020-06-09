@@ -27,13 +27,6 @@ export default function HistoryView(props) {
 
   return (
     <Container>
-      <Header style={{backgroundColor: colors.white}}>
-      <Left></Left>
-        <Body>
-          <Title style={{color: colors.primary, fontWeight: 'bold'}}>Previous Swypes</Title>
-        </Body>
-        <Right />
-      </Header>
       <Content>
         <FlatList
           data={Object.keys(historyData)}

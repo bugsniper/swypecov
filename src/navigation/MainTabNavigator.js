@@ -1,13 +1,16 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import { Image, View, StyleSheet, Text } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {Image, View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 
-import { colors, fonts } from '../styles';
+import {colors, fonts} from '../styles';
 
 import HomeScreen from '../modules/home';
 import PagesScreen from '../modules/pages';
 import HistoryScreen from '../modules/history';
+import {createStackNavigator} from "react-navigation-stack";
+import ProgressScreen from "../modules/progress";
+import FinalScreen from "../modules/final";
 
 const iconHome = require('../../assets/images/tabbar/home.png');
 const iconCalendar = require('../../assets/images/tabbar/calendar.png');
@@ -55,26 +58,80 @@ const styles = StyleSheet.create({
 export default createBottomTabNavigator(
   {
     Home: {
-      screen: HomeScreen,
-      navigationOptions: {
-        title: 'SwypeCov Home',
-      },
+      screen: createStackNavigator(
+        {
+          HomeScreen: {
+            screen: HomeScreen,
+            navigationOptions: {
+              headerTitle: 'SwypeCov',
+              titleStyle: {
+                fontFamily: fonts.primaryLight,
+              },
+              headerStyle: {
+                backgroundColor: colors.white,
+                borderBottomWidth: 0,
+              },
+              headerTitleStyle: {
+                color: colors.primary,
+                fontWeight: 'bold',
+                fontFamily: fonts.primaryRegular,
+              },
+            },
+          },
+        },
+      ),
     },
     Pages: {
-      screen: PagesScreen,
-      navigationOptions: {
-        header: null,
-      },
+      screen: createStackNavigator(
+        {
+          PagesScreen: {
+            screen: PagesScreen,
+            navigationOptions: {
+              headerTitle: 'Contacts',
+              titleStyle: {
+                fontFamily: fonts.primaryLight,
+              },
+              headerStyle: {
+                backgroundColor: colors.white,
+                borderBottomWidth: 0,
+              },
+              headerTitleStyle: {
+                color: colors.primary,
+                fontWeight: 'bold',
+                fontFamily: fonts.primaryRegular,
+              },
+            },
+          },
+        },
+      ),
     },
     Histories: {
-      screen: HistoryScreen,
-      navigationOptions: {
-        header: null,
-      },
+      screen: createStackNavigator(
+        {
+          HistoryScreen: {
+            screen: HistoryScreen,
+            navigationOptions: {
+              headerTitle: 'Previous Swypes',
+              titleStyle: {
+                fontFamily: fonts.primaryLight,
+              },
+              headerStyle: {
+                backgroundColor: colors.white,
+                borderBottomWidth: 0,
+              },
+              headerTitleStyle: {
+                color: colors.primary,
+                fontWeight: 'bold',
+                fontFamily: fonts.primaryRegular,
+              },
+            },
+          },
+        },
+      ),
     },
   },
   {
-    defaultNavigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({navigation}) => ({
       // eslint-disable-next-line react/prop-types
       titleStyle: {
         fontFamily: fonts.primaryLight,
@@ -89,8 +146,8 @@ export default createBottomTabNavigator(
         fontFamily: fonts.primaryRegular,
       },
       headerTintColor: '#ffffff',
-      tabBarIcon: ({ focused }) => {
-        const { routeName } = navigation.state;
+      tabBarIcon: ({focused}) => {
+        const {routeName} = navigation.state;
         let iconSource;
         switch (routeName) {
           case 'Home':

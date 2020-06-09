@@ -5,6 +5,7 @@ const colors = {
   primaryGradientEnd: '#D4145A',
   secondaryGradientStart: '#FF1358',
   secondaryGradientEnd: '#FF1358',
+  cardBackgroundColor: '#ECF0F3',
   profileGradientStart: '#54CBF6',
   profileGradientEnd: '#49D2D0',
   secondary: '#FF1358',
